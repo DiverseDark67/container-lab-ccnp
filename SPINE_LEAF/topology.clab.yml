@@ -4,6 +4,9 @@ topology:
   kinds: 
     cisco_n9kv:
       image: vrnetlab/cisco_n9kv:10.5.5
+      env:
+        VCPU: 2
+        RAM: 8192
       
   nodes:
     # ---- Spines ----

@@ -6,7 +6,7 @@ A collection of CCNP-level network labs using [Containerlab](https://containerla
 
 Labs require the following licensed Cisco images:
 - **Nexus 9300v** — used for data center/spine-leaf labs
-- **IOL** — used for routing labs (BGP, FHRP)
+- **CSR 1000v** — used for routing labs (BGP, FHRP)
 
 ## Server Setup
 

@@ -1,0 +1,47 @@
+name: hsrp
+
+topology:
+  kinds: 
+    cisco_n9kv:
+      image: vrnetlab/cisco_n9kv:10.5.5
+      env:
+        VCPU: 4
+        RAM: 8192
+        
+  nodes:
+    computer:
+      kind: linux
+      image: alpine:latest
+      startup-config: startup-configs/alpine.cfg
+      mgmt-ipv4: 172.20.20.2
+
+    switch:
+      kind: cisco_n9kv
+      startup-config: startup-configs/switch.cfg
+      mgmt-ipv4: 172.20.20.3
+
+    router1:
+      kind: cisco_csr1000v
+      image: vrnetlab/cisco_csr1000v:17.03.08
+      env:
+        VCPU: 2
+        RAM: 8192
+      startup-config: startup-configs/router1.cfg
+      mgmt-ipv4: 172.20.20.4
+
+    router2:
+      kind: cisco_csr1000v
+      image: vrnetlab/cisco_csr1000v:17.03.08
+      env:
+        VCPU: 2
+        RAM: 8192
+      startup-config: startup-configs/router2.cfg
+      mgmt-ipv4: 172.20.20.5
+
+  links:
+    # PC Connection
+    - endpoints: ["computer:eth1","switch:eth1/1"]
+
+    # Router ro Switch Connections
+    - endpoints: ["switch:eth1/2","router1:eth1/1"]
+    - endpoints: ["switch:eth1/3","router2:eth1/1"]

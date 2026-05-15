@@ -5,8 +5,8 @@ A collection of CCNP-level network labs using [Containerlab](https://containerla
 ## Prerequisites
 
 Labs require the following licensed Cisco images:
-- **Nexus 9300v** — used for data center/spine-leaf labs
-- **CSR 1000v** — used for routing labs (BGP, FHRP)
+- **Nexus 9300v** - used for data center/spine-leaf labs
+- **CSR 1000v** - used for routing labs (BGP, FHRP)
 
 ## Server Setup
 
@@ -31,7 +31,7 @@ Or add it to your cloud instance's user data / startup scripts for automated pro
 
 Copy your Cisco images to the appropriate vrnetlab build directory, then build the Docker image.
 
-**Example — Nexus 9300v:**
+**Example - Nexus 9300v:**
 
 ```bash
 sudo mv /path/to/nexus9300v64.10.5.5.M.qcow2 /opt/vrnetlab/cisco/n9kv/n9kv-10.5.5.qcow2

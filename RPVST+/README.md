@@ -1,6 +1,6 @@
 # RPVST+ LAB
 
-![RPVST+ Topology Diagram](diagram/topology.png)
+![RPVST+ Topology Diagram](diagram/RPVST_PLUS.png)
 
 ## Topology
 A Layer 2 Rapid Per-VLAN Spanning Tree Plus (RPVST+) lab using Cisco Nexus 9300v nodes.

@@ -1,0 +1,60 @@
+name: RPVST_PLUS
+
+# You can adjust env settings for VCPU and RAM as needed. It will cause slower startup times if you allocate less resources
+topology:
+  kinds: 
+    cisco_n9kv:
+      image: vrnetlab/cisco_n9kv:10.5.5
+      env:
+        VCPU: 4
+        RAM: 8192
+      
+  nodes:
+    # ---- Switches ----
+    switch1:
+      kind: cisco_n9kv
+      startup-config: startup-configs/switch1.cfg
+      mgmt-ipv4: 172.20.20.2
+
+    switch2:
+      kind: cisco_n9kv
+      startup-config: startup-configs/switch2.cfg
+      mgmt-ipv4: 172.20.20.3
+
+    switch3:
+      kind: cisco_n9kv
+      startup-config: startup-configs/switch3.cfg
+      mgmt-ipv4: 172.20.20.4
+
+    switch4:
+      kind: cisco_n9kv
+      startup-config: startup-configs/switch4.cfg
+      mgmt-ipv4: 172.20.20.5
+
+    # ---- Alpine Nodes ----
+    computer1:
+      kind: linux
+      image: alpine:latest
+      startup-config: startup-configs/alpine.cfg
+      mgmt-ipv4: 172.20.20.6
+
+    computer2:
+      kind: linux
+      image: alpine:latest
+      startup-config: startup-configs/alpine.cfg
+      mgmt-ipv4: 172.20.20.7
+
+  links:
+    # ==========================================
+    # Switch to Switch interconnect
+    # ==========================================
+    - endpoints: ["switch1:eth1", "switch2:eth1"]
+    - endpoints: ["switch1:eth2", "switch3:eth2"]
+    - endpoints: ["switch3:eth1", "switch4:eth1"]
+    - endpoints: ["switch2:eth2", "switch4:eth2"]
+
+    # ==========================================
+    # Switch to PC Links
+    # ==========================================
+    - endpoints: ["switch1:eth3", "computer2:eth1"]
+    - endpoints: ["switch4:eth3", "computer2:eth1"]

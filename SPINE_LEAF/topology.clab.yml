@@ -1,5 +1,6 @@
 name: spine-leaf
 
+# You can adjust env settings for VCPU and RAM as needed. It will cause slower startup times if you allocate less resources
 topology:
   kinds: 
     cisco_n9kv:
